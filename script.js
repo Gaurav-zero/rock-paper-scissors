@@ -61,7 +61,23 @@ function playRound(humanChoice, computerChoice){
     }
 }
 
+function playGame(){
+    userScore=0;
+    computerScore=0;
 
-const humanSelection= getHumanChoice();
-const computerSelection= getComputerChoice();
-playRound(humanSelection, computerSelection);
+    for(let i=0; i<5; ++i){
+        const humanSelection= getHumanChoice();
+        const computerSelection= getComputerChoice();
+        playRound(humanSelection, computerSelection);
+    }
+
+    if(userScore > computerScore){
+        console.log("You win!!");
+    }
+    else if(userScore < computerScore){
+        console.log("You lose!!");
+    }
+    else console.log("It's a tie!!");
+
+    console.log(userScore + "-" + computerScore);
+}
