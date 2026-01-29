@@ -1,3 +1,6 @@
+let userScore=0;
+let computerScore=0;
+
 function getComputerChoice(){
     let num= Math.floor(Math.random() * 100) + 1;
 
