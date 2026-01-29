@@ -16,3 +16,52 @@ function getHumanChoice(){
     else if(choice.toLowerCase() == "scissors") return "Scissors";
     else return "Paper";
 }
+
+function playRound(humanChoice, computerChoice){
+    if(humanChoice == "Rock"){
+        if(computerChoice == "Rock"){
+            console.log("Its a tie!! Both chose Rock");
+        }
+        else if(computerChoice == "Paper"){
+            console.log("You lose!! Paper beats Rock");
+            computerScore++;
+        }
+        else{
+            console.log("You win!! Scissors is beaten by Rock");
+            userScore++;
+        }
+    }
+
+    else if(humanChoice == "Paper"){
+        if(computerChoice == "Paper"){
+            console.log("Its a tie!! Both chose Paper");
+        }
+        else if(computerChoice == "Scissors"){
+            console.log("You lose!! Scissors beat Paper");
+            computerScore++;
+        }
+        else{
+            console.log("You win!! Rock is beaten by Paper");
+            userScore++;
+        }
+    }
+
+    else{
+        if(computerChoice == "Scissors"){
+            console.log("Its a tie!! Both chose Scissors");
+        }
+        else if(computerChoice == "Rock"){
+            console.log("You lose!! Rock beats Scissors");
+            computerScore++;
+        }
+        else{
+            console.log("You win!! Paper is beaten by Scissors");
+            userScore++;
+        }
+    }
+}
+
+
+const humanSelection= getHumanChoice();
+const computerSelection= getComputerChoice();
+playRound(humanSelection, computerSelection);
