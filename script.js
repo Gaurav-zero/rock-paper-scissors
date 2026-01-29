@@ -10,9 +10,9 @@ function getComputerChoice(){
 }
 
 function getHumanChoice(){
-    let choice= prompt("Enter:- 1 for 'Rock' \n 2 for 'Scissors' \n3 for 'Paper'");
+    let choice= prompt("Enter Rock, Paper or Scissors");
 
-    if(choice==1) return "Rock";
-    else if(choice == 2) return "Scissors";
+    if(choice.toLowerCase()=="rock") return "Rock";
+    else if(choice.toLowerCase() == "scissors") return "Scissors";
     else return "Paper";
 }
