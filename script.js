@@ -1,6 +1,9 @@
 let userScore=0;
 let computerScore=0;
 
+const result= document.querySelector("p");
+const btns= document.querySelectorAll("button");
+
 function getComputerChoice(){
     let num= Math.floor(Math.random() * 100) + 1;
 
@@ -9,76 +12,93 @@ function getComputerChoice(){
     else  return( "Scissors" );
 }
 
-function getHumanChoice(){
-    let choice= prompt("Enter Rock, Paper or Scissors");
-
-    if(choice.toLowerCase()=="rock") return "Rock";
-    else if(choice.toLowerCase() == "scissors") return "Scissors";
-    else return "Paper";
-}
-
 function playRound(humanChoice, computerChoice){
     if(humanChoice == "Rock"){
         if(computerChoice == "Rock"){
-            alert("Its a tie!! Both chose Rock");
+            result.textContent="Its a tie!!"+
+                                userScore + "-" + computerScore;
         }
         else if(computerChoice == "Paper"){
-            alert("You lose!! Paper beats Rock");
             computerScore++;
+            result.textContent="You lose!!"+
+                                userScore + "-" + computerScore;            
         }
         else{
-            alert("You win!! Scissors is beaten by Rock");
             userScore++;
+            result.textContent="You win!!"+
+                                userScore + "-" + computerScore;            
         }
     }
 
     else if(humanChoice == "Paper"){
         if(computerChoice == "Paper"){
-            alert("Its a tie!! Both chose Paper");
+            result.textContent="Its a tie!!"
+                                userScore + "-" + computerScore;
         }
         else if(computerChoice == "Scissors"){
-            alert("You lose!! Scissors beat Paper");
             computerScore++;
+            result.textContent="You lose!!"+
+                                userScore + "-" + computerScore;            
         }
         else{
-            alert("You win!! Rock is beaten by Paper");
             userScore++;
+            result.textContent="You win!!"+
+                                userScore + "-" + computerScore;            
         }
     }
 
     else{
         if(computerChoice == "Scissors"){
-            alert("Its a tie!! Both chose Scissors");
+            result.textContent="Its a tie!!"
+                                userScore + "-" + computerScore;
         }
         else if(computerChoice == "Rock"){
-            alert("You lose!! Rock beats Scissors");
             computerScore++;
+            result.textContent="You lose!!"+
+                                userScore + "-" + computerScore;            
         }
         else{
-            alert("You win!! Paper is beaten by Scissors");
             userScore++;
+            result.textContent="You win!!"+
+                                userScore + "-" + computerScore;            
         }
     }
+
+    if(userScore >=5 || computerScore >= 5){
+       let winnerText= document.createTextNode("");
+
+       if(userScore>computerScore){
+        winnerText.textContent= "You win";
+       }
+       else winnerText.textContent= "You lose";
+
+       result.appendChild(winnerText);
+
+       userScore=0;
+       computerScore=0;
+    }
 }
 
-function playGame(){
-    userScore=0;
-    computerScore=0;
+btns.forEach((btn) => {
+    btn.addEventListener("click", (event) =>{
+        let humanSelection="Rock";
 
-    for(let i=0; i<5; ++i){
-        const humanSelection= getHumanChoice();
-        const computerSelection= getComputerChoice();
+        switch(event.currentTarget.id){
+            case "rock":
+                humanSelection= "Rock";
+                break;
+            case "paper":
+                humanSelection= "Paper";
+                break;
+            case "scissors":
+                humanSelection= "Scissors";
+                break;
+        }
+
+        let computerSelection= getComputerChoice();
+
         playRound(humanSelection, computerSelection);
-    }
-
-    if(userScore > computerScore){
-        alert("You win!! \n" + userScore + "-" + computerScore);
-    }
-    else if(userScore < computerScore){
-        alert("You lose!! \n" + userScore + "-" + computerScore);
-    }
-    else alert("It's a tie!! \n" + userScore + "-" + computerScore);
-}
+    });
+});
 
 
-playGame();
